@@ -1,19 +1,30 @@
 = Spring boot RestController와 Fuse(Apache Camel)간 연동 테스트 모듈 입니다.
 
-이 데모는 3개의 마이크로 서비스를 red hat fuse 7.8을 사용하였습니다.https://access.redhat.com/documentation/en-us/red_hat_fuse/7.8/[Red Hat Fuse 7.8]:
+이 데모는 localhost에서 1개의  마이크로 서비스를 red hat fuse 7.8을 사용하였습니다.https://access.redhat.com/documentation/en-us/red_hat_fuse/7.8/[Red Hat Fuse 7.8]:
 
-* `DemoController`: RestController를 통해 입력 받은 param을 Fuse로 전달
+* `demo-service`: REST로 전달 받은 구매 요청을 위해 Saga를 생성하고 그 결과를 로그로 남기는 서비스
+* `DemoController`: RestController를 통해 입력 받은 parameter를 Fuse로 전달
 * `CamelRouter` : Controller 부터 메시지를 전달 받는 컨슈머(controllerTest)
 
-FluentProducerTemplate 를 통해서 parameter 들을 Header에 Key, value 형태로 삽입
+ProducerTemplate 인터페이스는 message exchange를 Camel Endpoint에 다양한 방식으로 전달하는 역할 입니다.
+그 중 FluentProducerTemplate는 문법(Syntax)가 유연한 템플릿 입니다.
+.https://camel.apache.org/manual/producertemplate.html
+FluentProducerTemplate는 withHeader 메소드를 이용해서 parameter 들을 Header에 Key, value 형태로 삽입이 가능 합니다.
 
 ==== FluentProducerTemplate 예제 ====
+----
 Integer result = FluentProducerTemplate.on(context)
     .withHeader("key-1", "value-1")
     .withHeader("key-2", "value-2")
     .withBody("Hello")
     .to("direct:inout")
     .request(Integer.class);
+----
+
+구동 방법
+----
+mvn spring-boot:run
+----
 
 차 3대 구매 요청 예제
 [source,bash,options="nowrap",subs="attributes+"]
