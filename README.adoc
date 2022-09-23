@@ -8,8 +8,8 @@
 
 ProducerTemplate 인터페이스는 message exchange를 Camel Endpoint에 다양한 방식으로 전달하는 역할 입니다.
 그 중 FluentProducerTemplate는 문법(Syntax)가 유연한 템플릿 입니다.
-.https://camel.apache.org/manual/producertemplate.html
-FluentProducerTemplate는 withHeader 메소드를 이용해서 parameter 들을 Header에 Key, value 형태로 삽입이 가능 합니다.
+
+FluentProducerTemplate는 withHeader 메소드를 이용해서 parameter 들을 Header에 Key, value 형태로 삽입이 가능 합니다.https://camel.apache.org/manual/producertemplate.html
 
 ==== FluentProducerTemplate 예제 ====
 ----
