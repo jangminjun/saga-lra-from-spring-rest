@@ -83,7 +83,5 @@ Ver en https://maven.repository.redhat.com/ga/org/apache/camel/camel-lra-starter
 
   <modules>
     <module>demo-service</module>
-    <module>order-service</module>
-    <module>stock-service</module>
   </modules>
 </project>
