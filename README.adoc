@@ -12,16 +12,16 @@ ProducerTemplate 인터페이스는 message exchange를 Camel Endpoint에 다양
 FluentProducerTemplate는 withHeader 메소드를 이용해서 parameter 들을 Header에 Key, value 형태로 삽입이 가능 합니다.https://camel.apache.org/manual/producertemplate.html
 
 ==== FluentProducerTemplate 예제 ====
-----
+---
 Integer result = FluentProducerTemplate.on(context)
     .withHeader("key-1", "value-1")
     .withHeader("key-2", "value-2")
     .withBody("Hello")
     .to("direct:inout")
     .request(Integer.class);
-----
 
 구동 방법
+[source,bash,options="nowrap",subs="attributes+"]
 ----
 mvn spring-boot:run
 ----
@@ -33,6 +33,7 @@ curl -X POST "http://localhost:8180/purchases/car/3" -H  "accept: application/js
 ----
 
 테스트 결과
+[source,bash,options="nowrap",subs="attributes+"]
 ----
 2022-09-23 11:23:01.436  INFO 32728 --- [ult-workqueue-2] testRoute                                : -- Header HTTP_PATH --Simple: car/3
 ----
